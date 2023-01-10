@@ -3,6 +3,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
 import './App.css';
+import {drawHand} from "./utilities";
 
 function App() {
     const webcamRef = useRef(null);
@@ -33,6 +34,9 @@ function App() {
 
             const hand = await  net.estimateHands(video);
             console.log(hand);
+
+            const ctx = canvasRef.current.getContext("2d");
+            drawHand(hand, ctx);
         }
     }
 
