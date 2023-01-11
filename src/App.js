@@ -10,6 +10,9 @@ function App() {
     const webcamRef = useRef(null);
     const canvasRef = useRef(null);
 
+    const [emoji, setEmoji] = useState(null);
+    const images = {thums_up:'👍', victory:'✌'};
+
     const runHandpose = async () =>{
         const net = await handpose.load()
         console.log('Handpose loaded')
@@ -46,6 +49,18 @@ function App() {
 
                 const gesture = await GE.estimate(hand[0].landmarks, 8);
                 console.log(gesture);
+                if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
+                    //jeśli jest więcej niż jeden prawdopodobny gest to wybieramy najbardziej prawdopodobny
+                    const confidence = gesture.gestures.map(
+                        (prediction) => prediction.confidence
+                    );
+                    const maxConfidence = confidence.indexOf(
+                        Math.max.apply(null, confidence)
+                    );
+                    //najbardziej prawdopodobny gest
+                    setEmoji(gesture.gestures[maxConfidence].name);
+                    console.log(emoji);
+                }
             }
 
             const ctx = canvasRef.current.getContext("2d");
