@@ -11,7 +11,7 @@ function App() {
     const canvasRef = useRef(null);
 
     const [emoji, setEmoji] = useState(null);
-    const images = {thums_up:'👍', victory:'✌'};
+    const images = {thumbs_up:'👍', victory:'✌'};
 
     const runHandpose = async () =>{
         const net = await handpose.load()
@@ -45,7 +45,7 @@ function App() {
                 const GE = new fp.GestureEstimator([
                     fp.Gestures.VictoryGesture,
                     fp.Gestures.ThumbsUpGesture,
-                ])
+                ]);
 
                 const gesture = await GE.estimate(hand[0].landmarks, 8);
                 console.log(gesture);
@@ -54,6 +54,7 @@ function App() {
                     const confidence = gesture.gestures.map(
                         (prediction) => prediction.confidence
                     );
+                    console.log(confidence)
                     const maxConfidence = confidence.indexOf(
                         Math.max.apply(null, confidence)
                     );
@@ -66,40 +67,61 @@ function App() {
             const ctx = canvasRef.current.getContext("2d");
             drawHand(hand, ctx);
         }
-    }
+    };
 
     runHandpose()
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Webcam ref={webcamRef}
-          style={{
-            position:"absolute",
-            marginLeft:"auto",
-            marginRight:"auto",
-            left:"0",
-            right:"0",
-            textAlign:"center",
-            zIndex:"9",
-            width:"1280",
-            height:"720"
-        }}/>
-        <canvas ref={canvasRef}
-          style={{
-            position:"absolute",
-            marginLeft:"auto",
-            marginRight:"auto",
-            left:"0",
-            right:"0",
-            textAlign:"center",
-            zIndex:"9",
-            width:"1280",
-            height:"720"
-          }}/>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <header className="App-header">
+                <Webcam
+                    ref={webcamRef}
+                    style={{
+                        position: "absolute",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        left: 0,
+                        right: 0,
+                        textAlign: "center",
+                        zindex: 9,
+                        width: 640,
+                        height: 480,
+                    }}
+                />
+
+                <canvas
+                    ref={canvasRef}
+                    style={{
+                        position: "absolute",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        left: 0,
+                        right: 0,
+                        textAlign: "center",
+                        zindex: 9,
+                        width: 640,
+                        height: 480,
+                    }}
+                />
+                {emoji !== null ? (
+                    <p style={{
+                        position: "absolute",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        left: 400,
+                        bottom: 500,
+                        right: 0,
+                        textAlign: "center",
+                        height: 100,
+                    }}>
+                        {images[emoji]}
+                    </p>
+                ) : (
+                    ""
+                )}
+            </header>
+        </div>
+    );
 }
 
 export default App;
