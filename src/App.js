@@ -1,9 +1,10 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
 import './App.css';
 import {drawHand} from "./utilities";
+import * as fp from "fingerpose";
 
 function App() {
     const webcamRef = useRef(null);
@@ -34,6 +35,18 @@ function App() {
 
             const hand = await  net.estimateHands(video);
             console.log(hand);
+
+
+            if (hand.length > 0) {
+                //gesty które będziemy rozpoznawać
+                const GE = new fp.GestureEstimator([
+                    fp.Gestures.VictoryGesture,
+                    fp.Gestures.ThumbsUpGesture,
+                ])
+
+                const gesture = await GE.estimate(hand[0].landmarks, 8);
+                console.log(gesture);
+            }
 
             const ctx = canvasRef.current.getContext("2d");
             drawHand(hand, ctx);
