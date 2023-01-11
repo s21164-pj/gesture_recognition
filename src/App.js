@@ -11,7 +11,8 @@ function App() {
     const canvasRef = useRef(null);
 
     const [emoji, setEmoji] = useState(null);
-    const images = {thumbs_up:'👍', victory:'✌'};
+    const [confidence, setConfidence] = useState(null);
+    const quotes = {thumbs_up:'👍', victory:'✌'};
 
     const runHandpose = async () =>{
         const net = await handpose.load()
@@ -47,7 +48,7 @@ function App() {
                     fp.Gestures.ThumbsUpGesture,
                 ]);
 
-                const gesture = await GE.estimate(hand[0].landmarks, 8);
+                const gesture = await GE.estimate(hand[0].landmarks, 6);
                 console.log(gesture);
                 if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
                     //jeśli jest więcej niż jeden prawdopodobny gest to wybieramy najbardziej prawdopodobny
@@ -60,6 +61,7 @@ function App() {
                     );
                     //najbardziej prawdopodobny gest
                     setEmoji(gesture.gestures[maxConfidence].name);
+                    setConfidence(gesture.gestures[maxConfidence].confidence.toFixed(2))
                     console.log(emoji);
                 }
             }
@@ -108,13 +110,13 @@ function App() {
                         position: "absolute",
                         marginLeft: "auto",
                         marginRight: "auto",
-                        left: 400,
-                        bottom: 500,
+                        left: 0,
+                        bottom: 800,
                         right: 0,
                         textAlign: "center",
                         height: 100,
                     }}>
-                        {images[emoji]}
+                        {quotes[emoji]} {confidence}
                     </p>
                 ) : (
                     ""
