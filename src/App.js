@@ -6,13 +6,18 @@ import './App.css';
 import {drawHand} from "./utilities";
 import * as fp from "fingerpose";
 
+import {raisedHand} from "./gestures/raisedHand";
+import {fingerSplayed} from "./gestures/fingerSplayed";
+import {fist} from "./gestures/fist";
+import {okGesture} from "./gestures/okGesture";
+
 function App() {
     const webcamRef = useRef(null);
     const canvasRef = useRef(null);
 
     const [emoji, setEmoji] = useState(null);
     const [confidence, setConfidence] = useState(null);
-    const quotes = {thumbs_up:'👍', victory:'✌'};
+    const quotes = {thumbs_up:'👍', victory:'✌',raised_hand:'✋', finger_splayed:'🖐', fist:'✊', ok:'👌'};
 
     const runHandpose = async () =>{
         const net = await handpose.load()
@@ -46,9 +51,13 @@ function App() {
                 const GE = new fp.GestureEstimator([
                     fp.Gestures.VictoryGesture,
                     fp.Gestures.ThumbsUpGesture,
+                    raisedHand,
+                    fingerSplayed,
+                    fist,
+                    okGesture
                 ]);
 
-                const gesture = await GE.estimate(hand[0].landmarks, 6);
+                const gesture = await GE.estimate(hand[0].landmarks, 7);
                 console.log(gesture);
                 if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
                     //jeśli jest więcej niż jeden prawdopodobny gest to wybieramy najbardziej prawdopodobny
