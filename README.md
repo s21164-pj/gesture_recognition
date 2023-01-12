@@ -1,6 +1,24 @@
-# Getting Started with Create React App
+# Program do detekcji gestów
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projekt NAI_6 czyli: "Program do detekcji gestów", został napisany w języku JavaScript, przy pomocy IDE WebStorm. 
+
+Głównym zadaniem programu jest:
+1. Pobieranie obrazu z kamery laptopa,
+2. Detekcja gestu pokazywanego do kamery,
+3. Wyliczanie poprawności detekcji w skali [1-10],
+4. Wyświetlanie emotikony odzwierdziedlającej pokazywany gest.
+
+# Twórcy 
+1. Daniel Chabowski | s21164
+2. Szymon Dejewski  | s21242
+
+# Uwaga
+W trakcie testowania/używania oprogramowania:
+- Upewnij się, że pokazujesz do kamery tylko jedną rękę,
+- Zwróć uwagę na oświetlenie, musi być wystarczająco dobre
+( w ciemnym pokoju program może nie działać/nie działać prawidłowo, lub detekcja poprawności gestów będzie zaniżona )
+
+
 
 ## Available Scripts
 
