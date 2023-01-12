@@ -10,6 +10,7 @@ import {raisedHand} from "./gestures/raisedHand";
 import {fingerSplayed} from "./gestures/fingerSplayed";
 import {fist} from "./gestures/fist";
 import {okGesture} from "./gestures/okGesture";
+import {victory} from "./gestures/victory";
 
 function App() {
     const webcamRef = useRef(null);
@@ -49,8 +50,8 @@ function App() {
             if (hand.length > 0) {
                 //gesty które będziemy rozpoznawać
                 const GE = new fp.GestureEstimator([
-                    fp.Gestures.VictoryGesture,
                     fp.Gestures.ThumbsUpGesture,
+                    victory,
                     raisedHand,
                     fingerSplayed,
                     fist,
