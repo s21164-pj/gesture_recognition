@@ -20,7 +20,7 @@ W trakcie testowania/używania oprogramowania:
 
 # Działanie programu:
 <video width="320" height="240" controls>
-  <source src="./NAI_6.mp4" type="video/mp4">
+  <source src="https://user-images.githubusercontent.com/56222962/212187430-a5f92ce5-03a1-47a8-887c-36a71b6f82a1.mp4" type="video/mp4">
 </video>
 
 
