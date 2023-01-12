@@ -1,3 +1,4 @@
+//rysowanie dłoni (siatka i kropki)
 export const drawHand = (predictions, ctx) => {
     if (predictions.length > 0) {
         predictions.forEach((prediction)=> {
@@ -19,6 +20,7 @@ export const drawHand = (predictions, ctx) => {
                         landmarks[secondJointIndex][0],
                         landmarks[secondJointIndex][1],
                     );
+                    //wygląd linii i jej generowanie
                     ctx.strokeStyle = "yellow";
                     ctx.lineWith = 5;
                     ctx.stroke();
@@ -43,6 +45,7 @@ export const drawHand = (predictions, ctx) => {
     }
 }
 
+// przypisanie kropek to poszczególnych palców
 const fingerJoints = {
     thumb: [0, 1, 2, 3, 4],
     indexFinger: [0, 5, 6, 7, 8],

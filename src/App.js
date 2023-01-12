@@ -6,6 +6,7 @@ import './App.css';
 import {drawHand} from "./utilities";
 import * as fp from "fingerpose";
 
+//importy gestów
 import {raisedHand} from "./gestures/raisedHand";
 import {fingerSplayed} from "./gestures/fingerSplayed";
 import {fist} from "./gestures/fist";
@@ -20,6 +21,7 @@ function App() {
     const [confidence, setConfidence] = useState(null);
     const quotes = {thumbs_up:'👍', victory:'✌',raised_hand:'✋', finger_splayed:'🖐', fist:'✊', ok:'👌'};
 
+    //ładowanie odczytywania dłoni i ustawienie częstotliwości odświeżania
     const runHandpose = async () =>{
         const net = await handpose.load()
         console.log('Handpose loaded')
@@ -28,6 +30,7 @@ function App() {
         }, 100)
     }
 
+    //system rozpoznawania gestów
     const detect = async (net) =>{
         if (typeof webcamRef.current !=="undefined" &&
             webcamRef.current !== null &&
@@ -83,6 +86,7 @@ function App() {
 
     runHandpose()
 
+    //Wyświetlanie widoku. Kamera i siatka dłoni są na siebie idealnie nałożone
     return (
         <div className="App">
             <header className="App-header">
