@@ -4,9 +4,10 @@ Projekt NAI_6 czyli: "Program do detekcji gestów", został napisany w języku J
 
 Głównym zadaniem programu jest:
 1. Pobieranie obrazu z kamery laptopa,
-2. Detekcja gestu pokazywanego do kamery,
-3. Wyliczanie poprawności detekcji w skali [1-10],
-4. Wyświetlanie emotikony odzwierdziedlającej pokazywany gest.
+2. Rozpoznanie ręki, oraz naniesienie siatki,
+3. Detekcja gestu pokazywanego do kamery,
+4. Wyliczanie poprawności detekcji w skali [1-10],
+5. Wyświetlanie emotikony odzwierdziedlającej pokazywany gest.
 
 # Twórcy 
 1. Daniel Chabowski | s21164
