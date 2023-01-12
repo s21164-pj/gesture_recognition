@@ -18,6 +18,10 @@ W trakcie testowania/używania oprogramowania:
 - Zwróć uwagę na oświetlenie, musi być wystarczająco dobre
 ( w ciemnym pokoju program może nie działać/nie działać prawidłowo, lub detekcja poprawności gestów będzie zaniżona )
 
+# Działanie programu:
+<video width="320" height="240" controls>
+  <source src="./NAI_6.mp4" type="video/mp4">
+</video>
 
 
 ## Available Scripts
